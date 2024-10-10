@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // Function to calculate age based on birthdate
   const calculateAge = (birthdate) => {
     const today = new Date();
     const birthDate = new Date(birthdate);
@@ -14,72 +13,63 @@ function App() {
     return age;
   };
 
-  // Data array with calculated age
   const data = [
     {
-      lastName: 'Smith',
-      firstName: 'John',
+      lastName: 'Manalo',
+      firstName: 'Diane',
       course: 'IT',
       birthdate: '1995-05-12',
       age: calculateAge('1995-05-12'),
     },
     {
-      lastName: 'Doe',
-      firstName: 'Jane',
+      lastName: 'Bolivar',
+      firstName: 'Nestcel',
       course: 'CS',
       birthdate: '1997-08-25',
       age: calculateAge('1997-08-25'),
     },
     {
-      lastName: 'Garcia',
-      firstName: 'Maria',
+      lastName: 'Remoroza',
+      firstName: 'Elena',
       course: 'IS',
       birthdate: '1994-11-03',
       age: calculateAge('1994-11-03'),
     },
     {
-      lastName: 'Lee',
-      firstName: 'Kim',
+      lastName: 'Modequillo',
+      firstName: 'Ken',
       course: 'DS',
       birthdate: '1999-04-15',
       age: calculateAge('1999-04-15'),
     }
   ];
 
-  // Helper function to get the minimum birthdate from the data
   const getMinDate = () => {
     return data.reduce((min, person) => (new Date(person.birthdate) < new Date(min) ? person.birthdate : min), data[0].birthdate);
   };
 
-  // Helper function to get the maximum birthdate from the data
   const getMaxDate = () => {
     return data.reduce((max, person) => (new Date(person.birthdate) > new Date(max) ? person.birthdate : max), data[0].birthdate);
   };
 
-  // State to store filter text
   const [filterText, setFilterText] = useState("");
-  // State to store min and max date filters
   const [minDate, setMinDate] = useState(getMinDate());
   const [maxDate, setMaxDate] = useState(getMaxDate());
 
-  // Update the minDate and maxDate whenever data changes (optional)
   useEffect(() => {
     setMinDate(getMinDate());
     setMaxDate(getMaxDate());
   }, []);
 
-  // Function to check if a birthdate is within the range of minDate and maxDate
   const isBirthdateInRange = (birthdate) => {
-    if (!minDate && !maxDate) return true; // No filters applied
+    if (!minDate && !maxDate) return true; 
     const birthDate = new Date(birthdate);
     const min = minDate ? new Date(minDate) : null;
     const max = maxDate ? new Date(maxDate) : null;
 
-    // Check if birthdate is between min and max dates
     return (!min || birthDate >= min) && (!max || birthDate <= max);
   };
 
-  // Filter data based on filter text and date range
   const filteredData = data.filter(person => 
     (person.lastName.toLowerCase().includes(filterText.toLowerCase()) ||
     person.firstName.toLowerCase().includes(filterText.toLowerCase()) ||
@@ -92,7 +82,7 @@ function App() {
     <div className="App">
       <h1>DATA TABLE</h1>
 
-      {/* Input filter for text (name, course, age) */}
+      {}
       <input
         type="text"
         placeholder="Filter by Last Name, First Name, Course, or Age"
@@ -100,27 +90,27 @@ function App() {
         onChange={(e) => setFilterText(e.target.value)}
       />
 
-      {/* Min Date Filter */}
+      {}
       <label>Min Date:</label>
       <input
         type="date"
         value={minDate}
         onChange={(e) => setMinDate(e.target.value)}
-        min={getMinDate()} // Set the minimum selectable date
-        max={getMaxDate()} // Set the maximum selectable date
+        min={getMinDate()} 
+        max={getMaxDate()} 
       />
 
-      {/* Max Date Filter */}
+      {}
       <label>Max Date:</label>
       <input
         type="date"
         value={maxDate}
         onChange={(e) => setMaxDate(e.target.value)}
-        min={getMinDate()} // Set the minimum selectable date
-        max={getMaxDate()} // Set the maximum selectable date
+        min={getMinDate()} 
+        max={getMaxDate()} 
       />
 
-      {/* Table displaying filtered data */}
+      {}
       <table>
         <thead>
           <tr>
